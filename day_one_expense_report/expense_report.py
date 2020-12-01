@@ -9,17 +9,32 @@ class ExpenseBook():
         self.rows = expenses
 
     def findMatchingPair(self) -> List[int]:
-        value_to_find = 2020
-        for row in self.rows:
-            matching_value = value_to_find - row
+        VALUE_TO_FIND = 2020
+        for entry in self.rows:
+            matching_value = VALUE_TO_FIND - entry
 
             if matching_value in self.rows:
-                return [row, matching_value]
+                return [entry, matching_value]
 
         return []
 
-    def get_result(self):
+    def findMatchingTriplet(self) -> List[int]:
+        VALUE_TO_FIND = 2020
+        for index, initial_entry in enumerate(self.rows):
+            remaining_entries = self.rows[index + 1:]
+            for second_entry in remaining_entries:
+                matching_value = VALUE_TO_FIND - initial_entry - second_entry
+
+                if matching_value in self.rows:
+                    return [initial_entry, second_entry, matching_value]
+
+        return []
+
+    def get_result(self) -> int:
         return reduce((lambda x, y: x * y), self.findMatchingPair())
+
+    def get_result_for_triplet(self) -> int:
+        return reduce((lambda x, y: x * y), self.findMatchingTriplet())
 
 
 if __name__ == '__main__':
@@ -27,3 +42,4 @@ if __name__ == '__main__':
     list_of_expenses = file_reader.to_int_list()
     expense_book = ExpenseBook(list_of_expenses)
     print(expense_book.get_result())
+    print(expense_book.get_result_for_triplet())

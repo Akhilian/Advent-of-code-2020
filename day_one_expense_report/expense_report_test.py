@@ -55,5 +55,27 @@ class FindMatchingPair(unittest.TestCase):
         self.assertEqual(result, 514579)
 
 
+class FindMatchingTriplet(unittest.TestCase):
+    def test_should_find_the_pair_for_a_short_list(self):
+        # given
+        expense_book = ExpenseBook([1721, 979, 366, 299, 675, 1456])
+
+        # when
+        result = expense_book.findMatchingTriplet()
+
+        # then
+        self.assertEqual(result, [979, 366, 675])
+
+    def test_should_find_the_result_for_triplet(self):
+        # given
+        expense_book = ExpenseBook([1721, 979, 366, 299, 675, 1456])
+
+        # when
+        result = expense_book.get_result_for_triplet()
+
+        # then
+        self.assertEqual(result, 241861950)
+
+
 if __name__ == '__main__':
     unittest.main()
