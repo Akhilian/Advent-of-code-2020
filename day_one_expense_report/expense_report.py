@@ -8,7 +8,7 @@ class ExpenseBook():
     def __init__(self, expenses: List[int]) -> None:
         self.rows = expenses
 
-    def findMatchPair(self) -> List[int]:
+    def findMatchingPair(self) -> List[int]:
         value_to_find = 2020
         for row in self.rows:
             matching_value = value_to_find - row
@@ -19,7 +19,7 @@ class ExpenseBook():
         return []
 
     def get_result(self):
-        return reduce((lambda x, y: x * y), self.findMatchPair())
+        return reduce((lambda x, y: x * y), self.findMatchingPair())
 
 
 if __name__ == '__main__':

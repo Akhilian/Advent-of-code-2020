@@ -3,13 +3,13 @@ import unittest
 from day_one_expense_report.expense_report import ExpenseBook
 
 
-class OutsideInTest(unittest.TestCase):
+class FindMatchingPair(unittest.TestCase):
     def test_should_return_empty_table_when_nothing_found(self):
         # given
         expense_book = ExpenseBook([1721, 979, 366, 291, 675, 1456])
 
         # when
-        result = expense_book.findMatchPair()
+        result = expense_book.findMatchingPair()
 
         # then
         self.assertEqual(result, [])
@@ -19,7 +19,7 @@ class OutsideInTest(unittest.TestCase):
         expense_book = ExpenseBook([2019, 1])
 
         # when
-        result = expense_book.findMatchPair()
+        result = expense_book.findMatchingPair()
 
         # then
         self.assertEqual(result, [2019, 1])
@@ -29,7 +29,7 @@ class OutsideInTest(unittest.TestCase):
         expense_book = ExpenseBook([1721, 979, 366, 299, 675, 1456])
 
         # when
-        result = expense_book.findMatchPair()
+        result = expense_book.findMatchingPair()
 
         # then
         self.assertEqual(result, [1721, 299])
