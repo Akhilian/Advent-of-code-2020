@@ -1,6 +1,6 @@
 import pytest
 
-from day_two_tobogan.policy import Policy
+from day_2_tobogan.policy import Policy
 
 
 class TestPasswordValidationPolicy:

@@ -3,7 +3,7 @@ from typing import List, \
     Any
 
 from common.file_reader import FileReader
-from day_two_tobogan.password_validator import count_valid_password
+from day_2_tobogan.password_validator import count_valid_password
 
 
 class Policy():

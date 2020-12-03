@@ -1,6 +1,6 @@
 import pytest
 
-from day_two_tobogan.password_validator import OldPolicy, \
+from day_2_tobogan.password_validator import OldPolicy, \
     count_valid_password
 
 

@@ -2,7 +2,7 @@ from typing import List, \
     Tuple
 
 from common.file_reader import FileReader
-from day_two_tobogan.old_policy import OldPolicy
+from day_2_tobogan.old_policy import OldPolicy
 
 
 def count_valid_password(registry: List[Tuple[OldPolicy, str]]) -> int:
