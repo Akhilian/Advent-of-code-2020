@@ -2,6 +2,7 @@ from typing import List, \
     Tuple
 
 from common.file_reader import FileReader
+from day_two_tobogan.password_validator import count_valid_password
 
 
 class Policy():
@@ -23,6 +24,18 @@ class Policy():
 
         return False
 
+def parse_registry(registry: str) -> (Policy, str):
+    [raw_policy, password] = registry.split(':')
+    [occurences, letter] = raw_policy.split()
+    [first, second] = occurences.split('-')
+    return Policy(letter_checked=letter, first_position=int(first), second_position=int(second)), password.strip()
+
+
 if __name__ == '__main__':
-    file_reader = FileReader('./input')
-    password_registry = file_reader.to_str_list()
+    if __name__ == '__main__':
+        file_reader = FileReader('./input')
+        password_registry = file_reader.to_str_list()
+        parsed_registry = [parse_registry(line) for line in password_registry]
+
+        print(count_valid_password(parsed_registry))
+

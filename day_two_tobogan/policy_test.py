@@ -1,7 +1,5 @@
 import pytest
 
-from day_two_tobogan.password_validator import parse_registry, \
-    count_valid_password
 from day_two_tobogan.policy import Policy
 
 

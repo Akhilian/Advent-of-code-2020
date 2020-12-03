@@ -2,24 +2,7 @@ from typing import List, \
     Tuple
 
 from common.file_reader import FileReader
-
-
-class OldPolicy():
-    def __init__(self, minimum_occurences: int, max_occurences: int, letter_checked: str):
-        self.minimum_occurences = minimum_occurences
-        self.max_occurences = max_occurences
-        self.letter_checked = letter_checked
-
-    def is_password_valid(self, password) -> True:
-        count = list(password).count(self.letter_checked)
-        return self.minimum_occurences <= count <= self.max_occurences
-
-
-def parse_registry(registry: str) -> (OldPolicy, str):
-    [raw_policy, password] = registry.split(':')
-    [occurences, letter] = raw_policy.split()
-    [min, max] = occurences.split('-')
-    return OldPolicy(letter_checked=letter, minimum_occurences=int(min), max_occurences=int(max)), password.strip()
+from day_two_tobogan.old_policy import OldPolicy
 
 
 def count_valid_password(registry: List[Tuple[OldPolicy, str]]) -> int:
