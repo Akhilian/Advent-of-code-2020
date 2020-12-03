@@ -7,3 +7,6 @@ class FileReader():
 
     def to_int_list(self) -> List[int]:
         return [int(row) for row in self.file.readlines()]
+
+    def to_str_list(self) -> List[str]:
+        return self.file.read().splitlines()

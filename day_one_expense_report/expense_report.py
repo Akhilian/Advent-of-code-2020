@@ -1,7 +1,7 @@
 from functools import reduce
 from typing import List
 
-from day_one_expense_report.file_reader import FileReader
+from common.file_reader import FileReader
 
 
 class ExpenseBook():
