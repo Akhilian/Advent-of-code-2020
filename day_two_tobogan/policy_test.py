@@ -52,3 +52,18 @@ class TestPasswordValidationPolicy:
     def test_password_is_matching_examples(self, password, policy, is_valid):
         # then
         assert policy.is_password_valid(password) is is_valid
+
+    class TestParseRegistry:
+        def test_return_a_policy_and_a_password(self):
+            # given
+            registry = '1-9 x: xwjgxtmrzxzmkx'
+
+            # when
+            (policy, password) = Policy.parse_registry(registry)
+
+            # then
+            assert password == 'xwjgxtmrzxzmkx'
+            assert isinstance(policy, Policy)
+            assert policy.letter_checked == 'x'
+            assert policy.first_position == 1
+            assert policy.second_position == 9
