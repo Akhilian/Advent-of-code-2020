@@ -1,6 +1,6 @@
 import unittest
 
-from day_one_expense_report.expense_report import ExpenseBook
+from day_1_expense_report.expense_report import ExpenseBook
 
 
 class FindMatchingPair(unittest.TestCase):
