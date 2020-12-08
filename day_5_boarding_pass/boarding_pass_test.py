@@ -1,4 +1,5 @@
-from day_5_boarding_pass.boarding_pass import BoardingPass
+from day_5_boarding_pass.boarding_pass import BoardingPass, \
+    find_missing_boarding_pass
 
 
 class TestColumn:
@@ -103,3 +104,12 @@ class TestBoardingPass:
         assert boarding_pass.get_row() == 102
         assert boarding_pass.get_column() == 4
         assert boarding_pass.get_seat_id() == 820
+
+
+class TestIsBoardingPassMissing:
+    def test_is_2_when_surrounding_seats_id_are_there(self):
+        # given
+        seats = [1, 3]
+
+        # than
+        assert find_missing_boarding_pass(seats) == 2

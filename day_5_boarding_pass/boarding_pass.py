@@ -1,4 +1,15 @@
+from typing import List
+
 from common.file_reader import FileReader
+
+
+def find_missing_boarding_pass(seats: List[int]) -> int:
+    for neighbour in seats:
+        me = neighbour + 1
+        neighbour2 = me + 1
+
+        if me not in seats and neighbour2 in seats:
+            return me
 
 
 class BoardingPass():
@@ -51,4 +62,8 @@ if __name__ == '__main__':
     file_reader = FileReader('./input')
     sequences = file_reader.to_str_list()
     list_of_seats_id = [BoardingPass(sequence).get_seat_id() for sequence in sequences]
-    print(max(list_of_seats_id))
+
+    max_seat_id = max(list_of_seats_id)
+
+    print(f"Max Seat ID : {max_seat_id}")
+    print(f"My Seat ID : {find_missing_boarding_pass(list_of_seats_id)}")
