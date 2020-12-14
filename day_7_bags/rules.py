@@ -6,12 +6,12 @@ from typing import List, \
 from common.file_reader import FileReader
 
 
-def _find(color: str, in_bag: Union[str, None], rules: dict, path: List[str] = []) -> Union[int, Set]:
+def _find_bags_colors(color: str, in_bag: Union[str, None], rules: dict, path: List[str] = []) -> Union[int, Set]:
     if in_bag is None:
         total = set()
         for bag_option in set(rules):
             path_new = path + [bag_option]
-            find = _find(color=color, in_bag=bag_option, path=path_new, rules=rules)
+            find = _find_bags_colors(color=color, in_bag=bag_option, path=path_new, rules=rules)
             total = total.union(find)
 
         return len(total)
@@ -23,7 +23,7 @@ def _find(color: str, in_bag: Union[str, None], rules: dict, path: List[str] = [
             total = set()
             for bag_option in direct_colors:
                 path_new = path + [bag_option]
-                result = _find(color=color, in_bag=bag_option, path=path_new, rules=rules)
+                result = _find_bags_colors(color=color, in_bag=bag_option, path=path_new, rules=rules)
                 total = total.union(result)
 
             return total
@@ -42,8 +42,24 @@ def _find(color: str, in_bag: Union[str, None], rules: dict, path: List[str] = [
 def count_bags_options(my_color: str, rules: List[str]) -> int:
     parsed_rules = parse_rules(rules)
 
-    return _find(color=my_color, in_bag=None, rules=parsed_rules)
+    return _find_bags_colors(color=my_color, in_bag=None, rules=parsed_rules)
 
+
+def _count_required_bags(my_color: str, rules: dict):
+    if my_color not in rules:
+        return 1
+
+    result = 0
+    for (key,value) in rules[my_color].items():
+        count = _count_required_bags(key, rules)
+        result += (value + value * count)
+
+    return result
+
+def count_required_bags(my_color: str, rules: List[str]) -> int:
+    parsed_rules = parse_rules(rules)
+
+    return _count_required_bags(my_color=my_color, rules=parsed_rules)
 
 def parse_rules(rules: List[str]) -> dict:
     parsed_rules = {}
@@ -78,3 +94,4 @@ if __name__ == '__main__':
     print(rules)
 
     print(f"Nombre de sacs possibles 💼 - {count_bags_options('shiny gold', rules)}")
+    print(f"Nombre de sacs nécessaires 💼 - {count_required_bags('shiny gold', rules)}")
