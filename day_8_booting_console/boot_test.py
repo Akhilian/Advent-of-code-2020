@@ -1,3 +1,4 @@
+from common.file_reader import FileReader
 from day_8_booting_console.boot import run_console, \
     fix_instructions
 
@@ -98,8 +99,44 @@ class TestA:
         # when
         run_console(instructions)
 
+    def test_should_return_1941_for_first_exercise(self):
+        # given
+        file_reader = FileReader('./input')
+        instructions = file_reader.to_str_list()
+
+        # when
+        accumulator = run_console(instructions)['accumulator']
+
+        # then
+        assert accumulator == 1941
+
 
 class TestFixInfinityLoop:
+    def test_should_work_when_no_infinite_loop(self):
+        # given
+        instructions = [
+            "nop +0",
+        ]
+
+        # when
+        trace = fix_instructions(instructions)
+
+        # then
+        assert trace["accumulator"] == 0
+
+
+    def test_should_work_when_an_infinite_loop_is_started(self):
+        # given
+        instructions = [
+            "jmp +0",
+        ]
+
+        # when
+        trace = fix_instructions(instructions)
+
+        # then
+        assert trace["accumulator"] == 0
+
     def test_should_fix_the_infinity_loop_and_terminate_with_8(self):
         # given
         instructions = [
