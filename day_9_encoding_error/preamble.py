@@ -27,8 +27,31 @@ def find_weak_sequence(sequence: List[int], preamble_size: int) -> int:
     return None
 
 
+def find_contiguous_numbers(sequence: List[int], value: int) -> List[int]:
+    for start_index, v in enumerate(sequence):
+        end_index = start_index
+
+        value_is_reached_or_passed = False
+        while not value_is_reached_or_passed:
+            end_index += 1
+            subsequence = sequence[start_index:end_index]
+
+            total = sum(subsequence)
+
+            if total >= value:
+                value_is_reached_or_passed = True
+
+        if total == value:
+            return subsequence
+
 if __name__ == '__main__':
     file_reader = FileReader('./input')
     instructions = file_reader.to_int_list()
 
-    print(f"Code : {find_weak_sequence(instructions, 25)}")
+    invalid_key = find_weak_sequence(instructions, 25)
+    print(f"Invalid Code 🔑 : {invalid_key}")
+    min = min(find_contiguous_numbers(instructions, invalid_key))
+    max = max(find_contiguous_numbers(instructions, invalid_key))
+    print(f"Min value ➖ : {min}")
+    print(f"Max value ➕ : {max}")
+    print(f"Total 🧮 : {min + max}")
