@@ -109,3 +109,48 @@ def test_should_count_jolt_difference():
     assert bag.count_jolt_differences(3) == 10
 
 
+def test_should_count_possible_ways_with_only_two_branches():
+    # given
+    adapters = [
+        1, 2
+    ]
+
+    # when
+    bag = Bag(adapters)
+
+    # then
+    assert bag.count_possible_ways() == 2
+
+
+def test_should_count_possible_ways():
+    # given
+    adapters = [
+        16,
+        10,
+        15,
+        5,
+        1,
+        11,
+        7,
+        19,
+        6,
+        12,
+        4
+    ]
+
+    # when
+    bag = Bag(adapters)
+
+    # then
+    assert bag.count_possible_ways() == 8
+
+
+def test_should_count_options_with_second_example():
+    # given
+    adapters = [28, 33, 18, 42, 31, 14, 46, 20, 48, 47, 24, 23, 49, 45, 19, 38, 39, 11, 1, 32, 25, 35, 8, 17, 7, 9, 4, 2, 34, 10, 3]
+
+    # when
+    bag = Bag(adapters)
+
+    # then
+    assert bag.count_possible_ways() == 19208
