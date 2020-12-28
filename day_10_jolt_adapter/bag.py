@@ -51,6 +51,8 @@ class Bag:
         ]
 
         for index, adapter in enumerate(adapters):
+            possibles_ways = [way for way in possibles_ways if not (way[-1] + 3 < adapter)]
+
             compatible_ways = [way for way in possibles_ways if adapter > way[-1] and adapter - way[-1] <= 3]
             for compatible_way in compatible_ways:
                 possibles_ways.append(compatible_way.copy())
