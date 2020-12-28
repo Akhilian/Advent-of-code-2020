@@ -1,4 +1,6 @@
+from collections import Counter
 from functools import wraps
+from pprint import pprint
 from time import time
 from typing import List, \
     Tuple
@@ -60,6 +62,21 @@ class Bag:
 
         return len([way for way in possibles_ways if way[-1] == max(adapters)])
 
+    @timing
+    def count_possible_ways_v2(self):
+        adapters = self.find_chains()
+        count = { 0: 1 }
+
+        for adapter in adapters:
+            count[adapter] = 0
+            if adapter - 1 in count:
+                count[adapter] += count[adapter - 1]
+            if adapter - 2 in count:
+                count[adapter] += count[adapter - 2]
+            if adapter - 3 in count:
+                count[adapter] += count[adapter - 3]
+
+        return count[max(count)]
 
 if __name__ == '__main__':
     file_reader = FileReader('./input.txt')
@@ -71,4 +88,4 @@ if __name__ == '__main__':
 
     print(f"Multiplied : {bag.count_jolt_differences(1) * bag.count_jolt_differences(3)}")
 
-    print(f"Possible ways : {bag.count_possible_ways()}")
+    print(f"Possible ways : {bag.count_possible_ways_v2()}")

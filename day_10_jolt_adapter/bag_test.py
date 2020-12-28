@@ -120,6 +120,7 @@ def test_should_count_possible_ways_with_only_two_branches():
 
     # then
     assert bag.count_possible_ways() == 2
+    assert bag.count_possible_ways_v2() == 2
 
 
 def test_should_count_possible_ways():
@@ -154,3 +155,37 @@ def test_should_count_options_with_second_example():
 
     # then
     assert bag.count_possible_ways() == 19208
+
+class TestV2:
+    def test_should_count_possible_ways(self):
+        # given
+        adapters = [
+            16,
+            10,
+            15,
+            5,
+            1,
+            11,
+            7,
+            19,
+            6,
+            12,
+            4
+        ]
+
+        # when
+        bag = Bag(adapters)
+
+        # then
+        assert bag.count_possible_ways_v2() == 8
+
+
+    def test_should_count_options_with_second_example(self):
+        # given
+        adapters = [28, 33, 18, 42, 31, 14, 46, 20, 48, 47, 24, 23, 49, 45, 19, 38, 39, 11, 1, 32, 25, 35, 8, 17, 7, 9, 4, 2, 34, 10, 3]
+
+        # when
+        bag = Bag(adapters)
+
+        # then
+        assert bag.count_possible_ways_v2() == 19208
